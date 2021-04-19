@@ -3,8 +3,11 @@ from player import Player
 
 class Game:
     def __init__(self):
-        self.player_one = Player("Aaron")
-        self.player_two = Player("Noraa")
+        self.player_one = Player()
+        self.player_two = Player()
+
+    def run_game(self):
+        pass
 
     def player_turn(self):
         # TODO: display which players turn it is and execute
