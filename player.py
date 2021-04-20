@@ -16,7 +16,7 @@ class Player:
                                     "\n>")
 
     def select_name(self):
-        self.name = input("What's your name? >")
+        self.name = input("\nWhat's your name? >")
         print("Hello " + self.name + "!")
 
     def modify_score(self):
