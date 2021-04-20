@@ -5,14 +5,25 @@ from ai import Ai
 
 class Game:
     def __init__(self):
-        self.define_contestants = None
-        self.player_one = Human()
-        self.player_two = Human()
+        self.define_contestants()
+        # self.player_one = Human()
+        # self.player_two = Human()
         self.number_of_rounds = 0
+
+    def define_contestants(self):
+        self.opening_statement()
+        opponent = input("\nPress 1 to play against a Human or 2 to play against an AI"
+                         "\n >")
+        if opponent == '1':
+            self.player_one = Human()
+            self.player_two = Human()
+        else:
+            self.player_one = Human()
+            self.player_two = Ai()
 
     def run_game(self):
         # have players select name and check if ai is needed
-        self.opening_statement()
+
         self.player_one.select_name()
         self.player_two.select_name()
         self.battle()

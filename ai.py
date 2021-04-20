@@ -15,7 +15,7 @@ class Ai(Player):
         self.chosen_gesture = self.gesture[random_index]
         # print(self.chosen_gesture)
 
-    def choose_npc(self):
+    def select_name(self):
         # print("  ||  ".join(self.npc))
         random_index = self.random.randint(0, 2)
         self.name = self.npc[random_index]
