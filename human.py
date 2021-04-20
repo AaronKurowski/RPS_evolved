@@ -5,4 +5,6 @@ class Human(Player):
     def __init__(self):
         super().__init__()
 
-    # will likely just inherit all methods from player
+    def select_name(self):
+        self.name = input("\nWhat's your name? >")
+        print("Hello " + self.name + "!")

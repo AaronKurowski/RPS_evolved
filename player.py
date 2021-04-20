@@ -15,11 +15,21 @@ class Player:
         self.chosen_gesture = input("^^ Choose from the list above! ^^"
                                     "\n>")
 
-    def select_name(self):
-        self.name = input("\nWhat's your name? >")
-        print("Hello " + self.name + "!")
+    def give_point(self, player):
+        player.score += 1
 
-    def modify_score(self):
-        # if player win: += 1
-        # if player lose: += 0
-        pass
+
+    def opening_statement(self):
+        # TODO: General opening lines to start the game
+        print("Welcome to Rock, Paper, Scissors, Lizard, Spock!"
+              "\n\nHere are the rules:"
+              "\n\nRock crushes Scissors"
+              "\nScissors cuts Paper"
+              "\nPaper covers Rock"
+              "\nRock crushes Lizard"
+              "\nLizard poisons Spock"
+              "\nSpock smashes Scissors"
+              "\nScissors decapitates Lizard"
+              "\nLizard eats paper"
+              "\nPaper disproves Spock"
+              "\nSpock vaporizes Rock")
