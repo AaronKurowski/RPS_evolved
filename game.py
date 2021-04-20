@@ -22,9 +22,13 @@ class Game:
     def battle(self):
         # TODO: have players choose gestures against each other
         battle_active = 0
-        while battle_active < 3:
+        while self.player_one.score < 3 and self.player_two.score < 3:
             self.player_one.pick_gesture()
             self.player_two.pick_gesture()
+            while self.player_one.chosen_gesture == self.player_two.chosen_gesture:
+                print("Draw! Choose again!")
+                self.player_one.pick_gesture()
+                self.player_two.pick_gesture()
             self.decide_round_winner()
             battle_active += 1
         # add function to display winner
@@ -148,16 +152,20 @@ class Game:
                 return self.player_two
         else:
             print("It was a tie!")
-            self.player_one.pick_gesture()
-            self.player_two.pick_gesture()
-            self.decide_round_winner()
+            return None
+            # self.player_one.pick_gesture()
+            # self.player_two.pick_gesture()
+            # self.decide_round_winner()
 
     def decide_round_winner(self):
         winner = self.compare_gestures(self.player_one.chosen_gesture, self.player_two.chosen_gesture)
-        if winner == self.player_one:
-            self.player_one.score += 1
-            # print(winner.name)
-            print(f"{winner.name}'s score is: {winner.score}!")
-        else:
-            self.player_two.score += 1
-            print(f"{winner.name}'s score is: {winner.score}!")
+        winner.score += 1
+        print(f"{winner.name}'s score is: {winner.score}!")
+
+        # if winner == self.player_one:
+        #     self.player_one.score += 1
+        #     # print(winner.name)
+        #     print(f"{winner.name}'s score is: {winner.score}!")
+        # elif winner == self.player_two:
+        #     self.player_two.score += 1
+        #     print(f"{winner.name}'s score is: {winner.score}!")
