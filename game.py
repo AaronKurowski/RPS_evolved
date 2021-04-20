@@ -5,32 +5,37 @@ from ai import Ai
 
 class Game:
     def __init__(self):
+        self.define_contestants = None
         self.player_one = Human()
-        self.player_two = Human()
+        self.player_two = Ai()
 
     def run_game(self):
         # have players select name and check if ai is needed
         self.opening_statement()
         self.player_one.select_name()
-        self.player_two.select_name()
+        self.player_two.choose_npc()
         self.battle()
         # check for start
         # battle best of ? rounds
         # display winner
-        pass
+        print("\n")
+        self.display_winner()
 
     def battle(self):
         # TODO: have players choose gestures against each other
-        battle_active = 0
+        number_of_rounds = 0
         while self.player_one.score < 3 and self.player_two.score < 3:
             self.player_one.pick_gesture()
             self.player_two.pick_gesture()
+            self.display_gestures(self.player_one, self.player_two)
             while self.player_one.chosen_gesture == self.player_two.chosen_gesture:
-                print("Draw! Choose again!")
+                print("\nDraw! Choose again!")
+                number_of_rounds += 1
                 self.player_one.pick_gesture()
                 self.player_two.pick_gesture()
+                self.display_gestures(self.player_one, self.player_two)
             self.decide_round_winner()
-            battle_active += 1
+            number_of_rounds += 1
         # add function to display winner
         self.display_winner()
 
@@ -169,3 +174,8 @@ class Game:
         # elif winner == self.player_two:
         #     self.player_two.score += 1
         #     print(f"{winner.name}'s score is: {winner.score}!")
+
+    def display_gestures(self, player1, player2):
+        print(f"\n{player1.name} chooses {player1.chosen_gesture}!")
+        print(f"{player2.name} chooses {player2.chosen_gesture}!")
+        print("--------------------------------------------------")

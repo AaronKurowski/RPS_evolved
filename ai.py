@@ -6,7 +6,7 @@ class Ai(Player):
     def __init__(self):
         self.random = Random()
         super().__init__()
-        self.npc_name = ""
+        self.name = ""
         self.npc = ["Billy Binks", "Scooter", "Yoder"]
 
     def pick_gesture(self):
@@ -18,5 +18,5 @@ class Ai(Player):
     def choose_npc(self):
         # print("  ||  ".join(self.npc))
         random_index = self.random.randint(0, 2)
-        self.npc_name = self.npc[random_index]
-        print("\n" + self.npc_name + " the NPC is ready to play!")
+        self.name = self.npc[random_index]
+        print("\n" + self.name + " the NPC is ready to play!")

@@ -17,4 +17,3 @@ class Player:
 
     # def give_point(self, player):
     #     player.score += 1
-
