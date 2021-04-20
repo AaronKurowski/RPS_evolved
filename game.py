@@ -21,9 +21,14 @@ class Game:
 
     def battle(self):
         # TODO: have players choose gestures against each other
-        self.player_one.pick_gesture()
-        self.player_two.pick_gesture()
-        self.decide_round_winner()
+        battle_active = 0
+        while battle_active < 3:
+            self.player_one.pick_gesture()
+            self.player_two.pick_gesture()
+            self.decide_round_winner()
+            battle_active += 1
+        # add function to display winner
+        self.display_winner()
 
     def return_score(self, player):
         # TODO: Return given player score
@@ -33,7 +38,12 @@ class Game:
         pass
 
     def display_winner(self):
-        pass
+        if self.player_one.score > self.player_two.score:
+            print(f"\n\n{self.player_one.name} wins!"
+                  f"\nBetter luck next time {self.player_two.name}")
+        else:
+            print(f"\n\n{self.player_two.name} wins!"
+                  f"\nBetter luck next time {self.player_one.name}")
 
     def opening_statement(self):
         # TODO: General opening lines to start the game
@@ -70,7 +80,7 @@ class Game:
                 print("Player 1 wins!")
                 return self.player_one
             else:
-                print("player 2 wins!")
+                print("Player 2 wins!")
                 return self.player_two
         elif "Paper" in list_of_gestures and "Rock" in list_of_gestures:
             index_of_winner = list_of_gestures.index("Paper")
@@ -78,7 +88,7 @@ class Game:
                 print("Player 1 wins!")
                 return self.player_one
             else:
-                print("player 2 wins!")
+                print("Player 2 wins!")
                 return self.player_two
         elif "Rock" in list_of_gestures and "Lizard" in list_of_gestures:
             index_of_winner = list_of_gestures.index("Rock")
@@ -86,7 +96,7 @@ class Game:
                 print("Player 1 wins!")
                 return self.player_one
             else:
-                print("player 2 wins!")
+                print("Player 2 wins!")
                 return self.player_two
         elif "Lizard" in list_of_gestures and "Spock" in list_of_gestures:
             index_of_winner = list_of_gestures.index("Lizard")
@@ -94,7 +104,7 @@ class Game:
                 print("Player 1 wins!")
                 return self.player_one
             else:
-                print("player 2 wins!")
+                print("Player 2 wins!")
                 return self.player_two
         elif "Spock" in list_of_gestures and "Scissors" in list_of_gestures:
             index_of_winner = list_of_gestures.index("Spock")
@@ -102,7 +112,7 @@ class Game:
                 print("Player 1 wins!")
                 return self.player_one
             else:
-                print("player 2 wins!")
+                print("Player 2 wins!")
                 return self.player_two
         elif "Scissors" in list_of_gestures and "Lizard" in list_of_gestures:
             index_of_winner = list_of_gestures.index("Scissors")
@@ -110,7 +120,7 @@ class Game:
                 print("Player 1 wins!")
                 return self.player_one
             else:
-                print("player 2 wins!")
+                print("Player 2 wins!")
                 return self.player_two
         elif "Lizard" in list_of_gestures and "Paper" in list_of_gestures:
             index_of_winner = list_of_gestures.index("Lizard")
@@ -118,7 +128,7 @@ class Game:
                 print("Player 1 wins!")
                 return self.player_one
             else:
-                print("player 2 wins!")
+                print("Player 2 wins!")
                 return self.player_two
         elif "Paper" in list_of_gestures and "Spock" in list_of_gestures:
             index_of_winner = list_of_gestures.index("Paper")
@@ -126,7 +136,7 @@ class Game:
                 print("Player 1 wins!")
                 return self.player_one
             else:
-                print("player 2 wins!")
+                print("Player 2 wins!")
                 return self.player_two
         elif "Spock" in list_of_gestures and "Rock" in list_of_gestures:
             index_of_winner = list_of_gestures.index("Spock")
@@ -134,23 +144,20 @@ class Game:
                 print("Player 1 wins!")
                 return self.player_one
             else:
-                print("player 2 wins!")
+                print("Player 2 wins!")
                 return self.player_two
         else:
             print("It was a tie!")
-
-        # elif "Scissors" in list_of_gestures and "Paper" in list_of_gestures:
-        #     index_of_winner = list_of_gestures.index("Scissors")
-        #     if index_of_winner == self.player_one.gesture:
-        #         return player1
-        #     else:
-        #         return player2
+            self.player_one.pick_gesture()
+            self.player_two.pick_gesture()
+            self.decide_round_winner()
 
     def decide_round_winner(self):
         winner = self.compare_gestures(self.player_one.chosen_gesture, self.player_two.chosen_gesture)
         if winner == self.player_one:
-            self.player_one.give_point(winner)
-            print(winner.name)
+            self.player_one.score += 1
+            # print(winner.name)
             print(f"{winner.name}'s score is: {winner.score}!")
         else:
-            self.player_two.give_point()
+            self.player_two.score += 1
+            print(f"{winner.name}'s score is: {winner.score}!")
