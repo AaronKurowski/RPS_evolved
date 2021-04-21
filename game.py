@@ -5,11 +5,11 @@ from ai import Ai
 
 class Game:
     def __init__(self):
-        # instantiates human+ai or human+human
         self.define_contestants()
         self.number_of_rounds = 0
 
     def define_contestants(self):
+        # prompts user to pick a human or ai opponent
         self.opening_statement()
         opponent = input("\nPress 1 to play against a Human or 2 to play against an AI"
                          "\n >")
@@ -40,15 +40,13 @@ class Game:
                 self.display_gestures(self.player_one, self.player_two)
             self.decide_round_winner()
             self.number_of_rounds += 1
-        # add function to display winner
 
     def best_of(self):
         # lets user pick best of however many rounds
-        # chosen_best_of = input("\nBest of how many rounds?"
-        #                        "\n>")
+        # chooses best of 3 if user chooses below 3
         while True:
             try:
-                chosen_best_of = input("\nBest of how many rounds?"
+                chosen_best_of = input("\nBest of how many rounds? Minimum = 3"
                                        "\n>")
                 chosen_best_of = int(chosen_best_of)
             except ValueError:
@@ -65,10 +63,6 @@ class Game:
                     return math.ceil((chosen_best_of / 2))
                 else:
                     return 3
-
-    def return_score(self, player):
-        # TODO: Return given player score
-        pass
 
     def ready_check(self):
         pass
@@ -101,10 +95,7 @@ class Game:
               "\nSpock vaporizes Rock")
 
     def compare_gestures(self, player_one_gesture, player_two_gesture):
-        # this method will compare gestures and possibly
-        # if i put the picked gestures in a list and compare the values
-        # i can say whoever had the one that wins is the winner
-        # if same then tie
+        # adds gestures to a list and picks the user with winning gesture
         list_of_gestures = [player_one_gesture, player_two_gesture]
         if "Rock" in list_of_gestures and "Scissors" in list_of_gestures:
             index_of_winner = list_of_gestures.index("Rock")
@@ -209,13 +200,11 @@ class Game:
         else:
             print("It was a tie!")
             return None
-            # self.player_one.pick_gesture()
-            # self.player_two.pick_gesture()
-            # self.decide_round_winner()
 
     def decide_round_winner(self):
         winner = self.compare_gestures(self.player_one.chosen_gesture, self.player_two.chosen_gesture)
         winner.score += 1
+        print("--------------------------------------------------")
         print(f"{winner.name}'s score is: {winner.score}")
 
     def display_gestures(self, player1, player2):

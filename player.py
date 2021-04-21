@@ -1,6 +1,3 @@
-from random import *
-
-
 class Player:
     def __init__(self):
         self.name = ""
@@ -10,11 +7,17 @@ class Player:
 
     def pick_gesture(self):
         # prints the options the user can pick and stores their input
-        print("\n")
-        print("  ||  ".join(self.gesture))
-        self.chosen_gesture = input("^^ Choose from the list above! ^^"
-                                    "\n>").title()
+        while True:
+            print("\n")
+            print("  ||  ".join(self.gesture))
+            self.chosen_gesture = input("^^ Type an option from the list above! ^^"
+                                        "\n>").title()
+            if self.chosen_gesture not in self.gesture:
+                print("\nThat is not an option. Try retyping!")
+                continue
+            else:
+                break
 
-
-    # def give_point(self, player):
-    #     player.score += 1
+    def select_name(self):
+        self.name = input("\nWelcome player, what is your name? >")
+        print("Hello " + self.name + "!")
