@@ -44,13 +44,27 @@ class Game:
 
     def best_of(self):
         # lets user pick best of however many rounds
-        chosen_best_of = input("\nBest of how many rounds?"
-                               "\n>")
-        chosen_best_of = int(chosen_best_of)
-        if chosen_best_of % 2 == 0:
-            return (chosen_best_of / 2) + 1
-        else:
-            return math.ceil(chosen_best_of / 2)
+        # chosen_best_of = input("\nBest of how many rounds?"
+        #                        "\n>")
+        while True:
+            try:
+                chosen_best_of = input("\nBest of how many rounds?"
+                                       "\n>")
+                chosen_best_of = int(chosen_best_of)
+            except ValueError:
+                print("\nMake sure you type a positive integer!")
+                continue
+            except TypeError:
+                print("\nMake sure you type a positive integer!")
+                continue
+            else:
+                if chosen_best_of >= 3 and chosen_best_of % 2 == 0:
+                    return (chosen_best_of / 2) + 1
+
+                elif chosen_best_of >= 3 and chosen_best_of % 2 == 1:
+                    return math.ceil((chosen_best_of / 2))
+                else:
+                    return 3
 
     def return_score(self, player):
         # TODO: Return given player score
