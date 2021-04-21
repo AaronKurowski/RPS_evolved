@@ -14,6 +14,6 @@ class Player:
         print("  ||  ".join(self.gesture))
         self.chosen_gesture = input("^^ Choose from the list above! ^^"
                                     "\n>")
-        
+
     # def give_point(self, player):
     #     player.score += 1

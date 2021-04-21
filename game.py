@@ -1,13 +1,12 @@
-from player import Player
+import math
 from human import Human
 from ai import Ai
 
 
 class Game:
     def __init__(self):
+        # instantiates human+ai or human+human
         self.define_contestants()
-        # self.player_one = Human()
-        # self.player_two = Human()
         self.number_of_rounds = 0
 
     def define_contestants(self):
@@ -22,19 +21,14 @@ class Game:
             self.player_two = Ai()
 
     def run_game(self):
-        # have players select name and check if ai is needed
-
         self.player_one.select_name()
         self.player_two.select_name()
         self.battle()
-        # check for start
-        # battle best of ? rounds
-        # display winner
         self.display_winner()
 
     def battle(self):
-        # TODO: have players choose gestures against each other
-        while self.player_one.score < 3 and self.player_two.score < 3:
+        win_limit = self.best_of()
+        while self.player_one.score < win_limit and self.player_two.score < win_limit:
             self.player_one.pick_gesture()
             self.player_two.pick_gesture()
             self.display_gestures(self.player_one, self.player_two)
@@ -47,6 +41,16 @@ class Game:
             self.decide_round_winner()
             self.number_of_rounds += 1
         # add function to display winner
+
+    def best_of(self):
+        # lets user pick best of however many rounds
+        chosen_best_of = input("\nBest of how many rounds?"
+                               "\n>")
+        chosen_best_of = int(chosen_best_of)
+        if chosen_best_of % 2 == 0:
+            return (chosen_best_of / 2) + 1
+        else:
+            return math.ceil(chosen_best_of / 2)
 
     def return_score(self, player):
         # TODO: Return given player score
@@ -63,13 +67,13 @@ class Game:
             print("*************************************")
         else:
             print("\n*************************************")
-            print(f"\n\n{self.player_two.name} wins in {self.number_of_rounds} rounds!"
+            print(f"{self.player_two.name} wins in {self.number_of_rounds} rounds!"
                   f"\nBetter luck next time {self.player_one.name}")
             print("*************************************")
 
     def opening_statement(self):
-        # TODO: General opening lines to start the game
-        print("Welcome to Rock, Paper, Scissors, Lizard, Spock!"
+        # General opening lines to start the game
+        print("\nWelcome to Rock, Paper, Scissors, Lizard, Spock!"
               "\n\nHere are the rules:"
               "\n\nRock crushes Scissors"
               "\nScissors cuts Paper"
