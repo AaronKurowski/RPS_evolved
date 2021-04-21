@@ -1,12 +1,14 @@
 import math
 from human import Human
 from ai import Ai
+from gesture import Gesture
 
 
 class Game:
     def __init__(self):
         self.define_contestants()
         self.number_of_rounds = 0
+        self.gestures = Gesture(self.player_one, self.player_two)
 
     def define_contestants(self):
         # prompts user to pick a human or ai opponent
@@ -94,115 +96,8 @@ class Game:
               "\nPaper disproves Spock"
               "\nSpock vaporizes Rock")
 
-    def compare_gestures(self, player_one_gesture, player_two_gesture):
-        # adds gestures to a list and picks the user with winning gesture
-        list_of_gestures = [player_one_gesture, player_two_gesture]
-        if "Rock" in list_of_gestures and "Scissors" in list_of_gestures:
-            index_of_winner = list_of_gestures.index("Rock")
-            if index_of_winner == 0:
-                print("Rock crushes Scissors!")
-                print(f"{self.player_one.name} wins this round!")
-                return self.player_one
-            else:
-                print("Rock crushes Scissors!")
-                print(f"{self.player_two.name} wins this round!")
-                return self.player_two
-        elif "Scissors" in list_of_gestures and "Paper" in list_of_gestures:
-            index_of_winner = list_of_gestures.index("Scissors")
-            if index_of_winner == 0:
-                print("Scissors cuts Paper!")
-                print(f"{self.player_one.name} wins this round!")
-                return self.player_one
-            else:
-                print("Scissors cuts Paper!")
-                print(f"{self.player_two.name} wins this round!")
-                return self.player_two
-        elif "Paper" in list_of_gestures and "Rock" in list_of_gestures:
-            index_of_winner = list_of_gestures.index("Paper")
-            if index_of_winner == 0:
-                print("Paper covers Rock!")
-                print(f"{self.player_one.name} wins this round!")
-                return self.player_one
-            else:
-                print("Paper covers Rock!")
-                print(f"{self.player_two.name} wins this round!")
-                return self.player_two
-        elif "Rock" in list_of_gestures and "Lizard" in list_of_gestures:
-            index_of_winner = list_of_gestures.index("Rock")
-            if index_of_winner == 0:
-                print("Rock crushes Lizard!")
-                print(f"{self.player_one.name} wins this round!")
-                return self.player_one
-            else:
-                print("Rock crushes Lizard!")
-                print(f"{self.player_two.name} wins this round!")
-                return self.player_two
-        elif "Lizard" in list_of_gestures and "Spock" in list_of_gestures:
-            index_of_winner = list_of_gestures.index("Lizard")
-            if index_of_winner == 0:
-                print("Lizard poisons Spock!")
-                print(f"{self.player_one.name} wins this round!")
-                return self.player_one
-            else:
-                print("Lizard poisons Spock!")
-                print(f"{self.player_two.name} wins this round!")
-                return self.player_two
-        elif "Spock" in list_of_gestures and "Scissors" in list_of_gestures:
-            index_of_winner = list_of_gestures.index("Spock")
-            if index_of_winner == 0:
-                print("Spock smashes Scissors!")
-                print(f"{self.player_one.name} wins this round!")
-                return self.player_one
-            else:
-                print("Spock smashes Scissors!")
-                print(f"{self.player_two.name} wins this round!")
-                return self.player_two
-        elif "Scissors" in list_of_gestures and "Lizard" in list_of_gestures:
-            index_of_winner = list_of_gestures.index("Scissors")
-            if index_of_winner == 0:
-                print("Scissors decapitates Lizard!")
-                print(f"{self.player_one.name} wins this round!")
-                return self.player_one
-            else:
-                print("Scissors decapitates Lizard!")
-                print(f"{self.player_two.name} wins this round!")
-                return self.player_two
-        elif "Lizard" in list_of_gestures and "Paper" in list_of_gestures:
-            index_of_winner = list_of_gestures.index("Lizard")
-            if index_of_winner == 0:
-                print("Lizard eats Paper!")
-                print(f"{self.player_one.name} wins this round!")
-                return self.player_one
-            else:
-                print("Lizard eats Paper!")
-                print(f"{self.player_two.name} wins this round!")
-                return self.player_two
-        elif "Paper" in list_of_gestures and "Spock" in list_of_gestures:
-            index_of_winner = list_of_gestures.index("Paper")
-            if index_of_winner == 0:
-                print("Paper disproves Spock!")
-                print(f"{self.player_one.name} wins this round!")
-                return self.player_one
-            else:
-                print("Paper disproves Spock!")
-                print(f"{self.player_two.name} wins this round!")
-                return self.player_two
-        elif "Spock" in list_of_gestures and "Rock" in list_of_gestures:
-            index_of_winner = list_of_gestures.index("Spock")
-            if index_of_winner == 0:
-                print("Spock vaporizes Rock!")
-                print(f"{self.player_one.name} wins this round!")
-                return self.player_one
-            else:
-                print("Spock vaporizes Rock!")
-                print(f"{self.player_two.name} wins this round!")
-                return self.player_two
-        else:
-            print("It was a tie!")
-            return None
-
     def decide_round_winner(self):
-        winner = self.compare_gestures(self.player_one.chosen_gesture, self.player_two.chosen_gesture)
+        winner = self.gestures.define_winner(self.player_one.chosen_gesture, self.player_two.chosen_gesture)
         winner.score += 1
         print("--------------------------------------------------")
         print(f"{winner.name}'s score is: {winner.score}")
