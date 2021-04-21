@@ -8,7 +8,7 @@ class Ai(Player):
         super().__init__()
         self.npc = ["Jarvis", "Hal", "Stiffler", "Billy Binks", "Scooter", "Yoder"]
 
-    def pick_gesture(self):
+    def pick_gesture(self, name):
         # randomly selects gesture
         random_index = self.random.randint(0, 4)
         self.chosen_gesture = self.gesture[random_index]

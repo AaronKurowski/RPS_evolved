@@ -29,14 +29,14 @@ class Game:
     def battle(self):
         win_limit = self.best_of()
         while self.player_one.score < win_limit and self.player_two.score < win_limit:
-            self.player_one.pick_gesture()
-            self.player_two.pick_gesture()
+            self.player_one.pick_gesture(self.player_one.name)
+            self.player_two.pick_gesture(self.player_two.name)
             self.display_gestures(self.player_one, self.player_two)
             while self.player_one.chosen_gesture == self.player_two.chosen_gesture:
                 print("\nDraw! Choose again!")
                 self.number_of_rounds += 1
-                self.player_one.pick_gesture()
-                self.player_two.pick_gesture()
+                self.player_one.pick_gesture(self.player_one.name)
+                self.player_two.pick_gesture(self.player_two.name)
                 self.display_gestures(self.player_one, self.player_two)
             self.decide_round_winner()
             self.number_of_rounds += 1
