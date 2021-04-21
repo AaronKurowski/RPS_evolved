@@ -11,7 +11,7 @@ class Game:
     def define_contestants(self):
         # prompts user to pick a human or ai opponent
         self.opening_statement()
-        opponent = input("\nPress 1 to play against a Human or 2 to play against an AI"
+        opponent = input("\nPress 1 to play against a Human or type anything else to play against an AI"
                          "\n >")
         if opponent == '1':
             self.player_one = Human()
@@ -62,7 +62,7 @@ class Game:
                 elif chosen_best_of >= 3 and chosen_best_of % 2 == 1:
                     return math.ceil((chosen_best_of / 2))
                 else:
-                    return 3
+                    return 2
 
     def ready_check(self):
         pass
